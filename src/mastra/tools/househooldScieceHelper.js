@@ -21,8 +21,9 @@ export const householdScienceTool = createTool({
   }),
 
   // This is the main function that runs when the tool is called
-  execute: async ({ question }) => {
-
+  execute: async ({ context }) => {
+    const { question } = context;
+    
     if (!question) {
       return { answer: "Please provide a question for me to answer." };
     }
