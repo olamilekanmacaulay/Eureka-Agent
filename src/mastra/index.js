@@ -2,10 +2,25 @@ import { Mastra } from "@mastra/core/mastra";
 import { PinoLogger } from "@mastra/loggers";
 import { LibSQLStore } from "@mastra/libsql";
 import { agent as eurekaAgent } from "./agents/householdScienceHelperAgent.js";
+import { a2aAgentRoute } from "./routes/a2a-agent-route.js";
 
 export const mastra = new Mastra({
-  agents: { eureka: eurekaAgent },
+  agents: { 
+    eureka: eurekaAgent 
+  },
   storage: new LibSQLStore({ url: ":memory:" }),
-  logger: new PinoLogger({ name: "Mastra", level: "info" }),
-  observability: { default: { enabled: true } },
+  logger: new PinoLogger({ 
+    name: "Mastra", 
+    level: "debug" 
+  }),
+  observability: { 
+    default: { enabled: true } 
+  },
+  server: {
+    build: {
+      openAPIDocs: true,
+      swaggerUI: true,
+    },
+    apiRoutes: [a2aAgentRoute]
+  }
 });
