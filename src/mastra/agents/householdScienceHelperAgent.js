@@ -1,11 +1,11 @@
 import { Agent } from "@mastra/core/agent";
-import { householdScienceTool } from "../tools/househooldScieceHelper.js";
 import { Memory } from "@mastra/memory";
 import { LibSQLStore } from "@mastra/libsql";
 
 // Create the main agent
 export const agent = new Agent({
   name: "Eureka",
+  description: "An AI agent that explains household science.",
 
   instructions: `You are a friendly and helpful science assistant called Eureka. 
     When the user asks a question, your job is to explain the concept in simple, layman-friendly terms suitable for a chat message. 
@@ -15,7 +15,7 @@ export const agent = new Agent({
 
   model: "google/gemini-2.0-flash",
 
-  tools: { householdScienceTool },
+  tools: {},
 
   memory: new Memory({
     storage: new LibSQLStore({
